@@ -9,6 +9,11 @@ export default class extends Controller {
         fetch(this.element.action, {
             method: this.element.method,
             body: new URLSearchParams(new FormData(this.element))
-        }).then(() => this.dispatch("success"));
+        }).then(async (response) => {
+            if (response.status === 204) {
+                return this.dispatch("success");
+            }
+            this.element.innerHTML = await response.text();
+        });
     }
 }

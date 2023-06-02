@@ -31,10 +31,11 @@ class DefaultController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
+            return new Response(null, 204); // 204 Empty response
         }
         return $this->render('default/filter.html.twig', [
             'form' => $form->createView()
-        ]);
+        ], new Response( null, $form->isSubmitted() && !$form->isValid()? 422 : 200)); // 422 Unprocessable entity - Validation errors
     }
 
     #[Route('/default/list', name: 'app_default_list')]
