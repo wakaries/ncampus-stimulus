@@ -6,17 +6,18 @@
     </tr>
     </thead>
     <tbody>
+    {% for item in items %}
     <tr>
-        <td>1</td>
-        <td>Uno</td>
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
     </tr>
-    <tr>
-        <td>2</td>
-        <td>Dos</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>Tres</td>
-    </tr>
+    {% endfor %}
     </tbody>
 </table>
+
+<div>
+    <button data-page="1" data-action="crud-list#paginate">1</button>
+    <button data-page="2" data-action="crud-list#paginate">2</button>
+    <button data-page="3" data-action="crud-list#paginate">3</button>
+    <button data-page="4" data-action="crud-list#paginate">4</button>
+</div>

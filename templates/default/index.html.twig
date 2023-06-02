@@ -13,15 +13,18 @@
 
     <hr>
 
-    <form name="test" method="post" novalidate="novalidate"
-          action="{{ path('app_default_filter') }}"
-            {{ stimulus_controller('filter-form') }}
-          data-action="filter-form#onSubmit"
-    >
-        {{ render(controller('App\\Controller\\DefaultController::filter')) }}
-    </form>
+    <div {{ stimulus_controller('crud-list') }} data-action="filter-form:success->crud-list#refresh filter-form:reset->crud-list#reset" data-crud-list-list-url-value="{{ path('app_default_list') }}" data-crud-list-set-page-url-value="{{ path('app_default_setpage') }}">
+        <form name="test" method="post" novalidate="novalidate"
+              action="{{ path('app_default_filter') }}"
+              {{ stimulus_controller('filter-form') }}
+              data-filter-form-reset-url-value="{{ path('app_default_reset') }}"
+              data-action="filter-form#onSubmit">
+            {{ render(path('app_default_filter')) }}
+        </form>
 
-    <hr>
+        <hr>
 
-    <div {{ stimulus_controller('list') }} data-action="filter-form:success@window->list#refresh"></div>
+        <div data-crud-list-target="list"></div>
+    </div>
+
 {% endblock %}
