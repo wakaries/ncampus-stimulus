@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  php-front:
+    tty: true
+    build:
+      context: ./docker
+      dockerfile: Dockerfile82
+    volumes:
+      - ./:/var/www/html/
+    ports:
+      - "80:80"

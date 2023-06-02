@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+
+    <div {{ stimulus_controller('dynamic') }} data-action="test:refresh@window->dynamic#refresh">
+    </div>
+
+    <div {{ stimulus_controller('test') }}>
+        <button data-action="click->test#refresh" class="btn btn-primary">Refresh</button>
+    </div>
+
+    <hr>
+
+    <form name="test" method="post" novalidate="novalidate"
+          action="{{ path('app_default_filter') }}"
+            {{ stimulus_controller('filter-form') }}
+          data-action="filter-form#onSubmit"
+    >
+        {{ render(controller('App\\Controller\\DefaultController::filter')) }}
+
+        <button class="btn btn-info">Filtrar</button>
+    </form>
+
+    <hr>
+
+    <div {{ stimulus_controller('list') }} data-action="filter-form:success@window->list#refresh"></div>
+{% endblock %}
