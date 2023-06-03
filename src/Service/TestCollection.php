@@ -15,6 +15,17 @@ class TestCollection
 
     public function getPage(int $page, array|null $filter = null)
     {
-        return array_slice($this->items, ($page - 1) * 10, 10);
+        $filteredItems = [];
+        foreach ($this->items as $item) {
+            if ($item['id'] > $filter['id']) {
+                $filteredItems[] = $item;
+            }
+        }
+        return [
+            'currentPage' => $page,
+            'totalCount' => count($filteredItems),
+            'numberOfPages' => intdiv(count($filteredItems), 10),
+            'items' => array_slice($filteredItems, ($page - 1) * 10, 10)
+        ];
     }
 }

@@ -14,10 +14,10 @@ class TestType extends AbstractType
     {
         $builder
             ->add('id', TextType::class, [
-                'constraints' => new NotBlank()
+                //'constraints' => new NotBlank()
             ])
             ->add('name', TextType::class, [
-                'constraints' => new NotBlank()
+                //'constraints' => new NotBlank()
             ])
         ;
     }

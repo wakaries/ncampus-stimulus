@@ -43,9 +43,14 @@ class DefaultController extends AbstractController
     #[Route('/default/list', name: 'app_default_list')]
     public function list(TestCollection $collection, SessionInterface $session): Response
     {
-        $items = $collection->getPage($session->get('page', 1), $session->get('filter'));
+        $currentPage = $session->get('page', 1);
+        $items = $collection->getPage($currentPage, $session->get('filter'));
+
         return $this->render('default/list.html.twig', [
-            'items' => $items
+            'items' => $items['items'],
+            'currentPage' => $items['currentPage'],
+            'totalCount' => $items['totalCount'],
+            'numberOfPages' => $items['numberOfPages']
         ]);
     }
 
