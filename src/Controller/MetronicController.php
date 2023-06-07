@@ -11,7 +11,7 @@ class MetronicController extends AbstractController
     #[Route('/metronic', name: 'app_metronic')]
     public function index(): Response
     {
-        return $this->render('metronic/index.html.twig', [
+        return $this->render('metronic/list.html.twig', [
             'controller_name' => 'MetronicController',
         ]);
     }
